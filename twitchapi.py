@@ -4,7 +4,6 @@ import time
 import requests
 import threading
 import logging
-import configparser
 from datetime import datetime
 
 
