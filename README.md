@@ -26,6 +26,7 @@ Usage
 
 * Open `twitch.cfg`
 * Insert data into file
+
 Example:
 ```
 [twitch]
