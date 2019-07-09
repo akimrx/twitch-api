@@ -347,44 +347,34 @@ class TwitchAPI:
     @thread
     def get_followers_list(self):
         try:
-            first_url = f'https://api.twitch.tv/helix/users/follows?to_id={self.channel_id}&first=100'
+            token = None
+            apicall = True
+            url = f'https://api.twitch.tv/helix/users/follows?to_id={self.channel_id}&first=100'
             headers = {
                 'Client-ID': self.client_id,
                 'content-type': 'application/json'
             }
-            # first 100 followers without pagination
-            r = requests.get(first_url, headers=headers)
-            first_data = json.loads(r.text)
-            for follower in first_data['data']:
-                self.followers[follower['from_name']]=follower['from_id']
-            pagination = first_data['pagination']['cursor']
-            url = f'https://api.twitch.tv/helix/users/follows?to_id={self.channel_id}&first=100&after='
-            # second 100 followers with pagination
-            r = requests.get(url + pagination, headers=headers)
-            data = json.loads(r.text)
-            for follower in data['data']:
-                self.followers[follower['from_name']]=follower['from_id']
-            if 'cursor' in data['pagination']:
-                cursor = data['pagination']['cursor']  
-                # third 100 followers with pagination
-                r = requests.get(url + cursor, headers=headers)
-                new_data = json.loads(r.text)
-                if 'cursor' in new_data['pagination']:
-                    new_cursor = new_data['pagination']['cursor']
-                    for follower in new_data['data']:
-                        self.followers[follower['from_name']]=follower['from_id']
-                    while True:
-                        time.sleep(2)
-                        # sequential requests with pagination
-                        req = requests.get(url + new_cursor, headers=headers)
-                        res = json.loads(req.text)
-                        if 'cursor' in res['pagination']:
-                            new_cursor = res['pagination']['cursor']
-                            for follower in res['data']:
-                                self.followers[follower['from_name']]=follower['from_id']
-                        else:
-                            break
-            logging.info('Dict Followers created')
+            while apicall:
+                time.sleep(2)
+                if token is None:
+                    r = requests.get(url, headers=headers)
+                else:
+                    r = requests.get(url + f'&after={token}', headers=headers)
+                data = json.loads(r.text)
+                if r.status_code != 200:
+                    print(f'ERROR: {data["message"]}')
+                else:
+                    if 'cursor' not in data['pagination']:
+                        apicall = False
+                        with open('followers.json', 'w') as outfile:
+                            json.dump(self.followers, outfile)
+                        outfile.close()
+                        logging.info(f'All followers received. Total: {len(self.followers)}. Json file created')
+                        return self.followers
+                    else:
+                        token = data['pagination']['cursor']
+                        for follower in data['data']:
+                            self.followers[follower['from_name']]=follower['from_id']
         except Exception as e:
             logging.warning(f'Error in followers-get: {e}')
         finally:
