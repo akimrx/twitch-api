@@ -151,7 +151,7 @@ class TwitchAPI:
         res = json.loads(req.text)
         if req.status_code == 200:
             if res['created_at']:
-                return self.get_user(user)
+                return True
 
     # Wrapped user follow age
     def get_follow_time(self, user):
