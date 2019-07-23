@@ -40,9 +40,9 @@ client_id = your-client-id-here
 **For test you can run `example-usage.py`**
 
 Methods
-==============================================
+=======
 
-## get_chatters_list()
+### get_chatters_list()
 **Action:** Return all users from chat
 
 **Type:** list
@@ -52,7 +52,7 @@ Methods
 ['iamsorrybot', 'eluri', 'moobot', 'akimrx']
 ```
 
-## get_viewer_list()
+### get_viewer_list()
 **Action:** Return only viewers and vips from chat
 
 **Type:** list
@@ -62,7 +62,7 @@ Methods
 ['eluri', 'moobot']
 ```
 
-## get_user_id(user)
+### get_user_id(user)
 **Action:** Return user id
 
 **Type:** str
@@ -72,7 +72,7 @@ Methods
 116410458
 ```
 
-## get_user(user)
+### get_user(user)
 **Action:** Return user info
 
 **Type:** dict
@@ -82,7 +82,7 @@ Methods
 {'display_name': 'AKIMRX', '_id': '116410458', 'name': 'akimrx', 'type': 'user', 'bio': '      ', 'created_at': '2016-02-20T10:30:34.241107Z', 'updated_at': '2019-07-22T08:20:36.6368Z', 'logo': 'https://static-cdn.jtvnw.net/jtv_user_pictures/99d68718-ee97-44cd-a75a-c5edd3fa5b7f-profile_image-300x300.jpg'}
 ```
 
-## check_user_follow(user)
+### check_user_follow(user)
 **Action:** Return True or False
 
 **Type:** boolean
@@ -93,7 +93,7 @@ if follower: True
 
 else: False
 
-## get_follow_time(user)
+### get_follow_time(user)
 **Action:** Return wrapped follow time for user
 
 **Type:** str
@@ -102,7 +102,7 @@ else: False
 ```5 months, 3 weeks```
 
 
-## stream_uptime()
+### stream_uptime()
 **Action:** Return stream uptime if stream is live, else return None
 
 **Type:** str
@@ -111,7 +111,7 @@ else: False
 `0:10` or `None`
 
 
-## change_title(title)
+### change_title(title)
 **Action:** Change stream title and return new title
 
 **Type:** str
@@ -119,7 +119,7 @@ else: False
 **Response:**
 `TEST API`
 
-## get_title()
+### get_title()
 **Action:** Return current title
 
 **Type:** str
@@ -127,7 +127,7 @@ else: False
 **Response:**
 `TEST API`
 
-## change_category(category)
+### change_category(category)
 **Action:** Change stream category and return new category
 
 **Type:** str
@@ -135,7 +135,7 @@ else: False
 **Response:**
 `Science & Technology`
 
-## get_category()
+### get_category()
 **Action:** Return current category
 
 **Type:** str
@@ -143,7 +143,7 @@ else: False
 **Response:**
 `Science & Technology`
 
-## get_subs_count()
+### get_subs_count()
 **Action:** Return subs count
 
 **Type:** int
@@ -151,7 +151,7 @@ else: False
 **Response:**
 `23`
 
-## get_subs_list()
+### get_subs_list()
 **Action:** Return subs count
 
 **Type:** list
@@ -159,13 +159,13 @@ else: False
 **Response:**
 `['user1', 'user2', 'user3', 'user99']`
 
-## export_subs()
+### export_subs()
 **Action:** Generate subs list and export to csv
 
 **Type:** csv
 
 
-## get_viewers_count()
+### get_viewers_count()
 **Action:** Return viewers count if stream is live, else None
 
 **Type:** int
@@ -174,13 +174,13 @@ else: False
 `56`
 
 
-## get_followers_list()
+### get_followers_list()
 **Action:** Generate followers list
 
 **Type:** dict
 
 
-## export_followers()
+### export_followers()
 **Action:** Export followers from get_followers_list to csv
 
 **Type:** csv
