@@ -88,10 +88,10 @@ Methods
 **Type:** boolean
 
 **Response:**
-
+```
 if follower: True
-
 else: False
+```
 
 ### get_follow_time(user)
 **Action:** Return wrapped follow time for user
